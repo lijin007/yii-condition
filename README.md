@@ -35,11 +35,11 @@ DbCondition 改写自 Criteria, 将简化一些常用的查询. 将其放在prot
         $rows = $model->findAll($criteria);
 
 
-~~~php
+~~~
 
 ####2 生成条件供复杂查询使用
 
-~~~php
+~~~
 
 		$cond = [
 			'z.id' => [['>=',1],  ['<',400]],
@@ -58,7 +58,7 @@ DbCondition 改写自 Criteria, 将简化一些常用的查询. 将其放在prot
 				  ->limit(10)
 				  ->queryAll();
 
-~~~php
+~~~
 
 ####3 常用功能
 
