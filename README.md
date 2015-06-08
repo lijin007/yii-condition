@@ -8,7 +8,7 @@ DbCondition 改写自 Criteria, 将简化一些常用的查询. 将其放在prot
 ~~~php
 
         $model = new Ziku();
-		// 1 自带的查询条件是这样子的
+	// 自带的查询条件是这样子的
         $criteria = new CDbCriteria();
         $criteria->condition="zi LIKE :zi AND id IN (:ycp1, :ycp2, :ycp3) AND type>=:iycp4 AND type<:iycp5";
 		$criteria->params = [
@@ -23,40 +23,39 @@ DbCondition 改写自 Criteria, 将简化一些常用的查询. 将其放在prot
 		//$data = $data -> getData();
 		print_test( getOrmData($rows) );
 		
-		// 使用将简化
-		$cond = [
-			'zi' => ['like','乒'],
-			'id' => [49,1,2],
-			'type' => [ ['>=',1],  ['<',4] ]
-		];
+	// 使用将简化
+	$cond = [
+		'zi' => ['like','乒'],
+		'id' => [49,1,2],
+		'type' => [ ['>=',1],  ['<',4] ]
+	];
 		
         $criteria = new Criteria();
         $criteria->cond( $cond ); 
         $rows = $model->findAll($criteria);
 
-
 ~~~
 
 ####2 生成条件供复杂查询使用
 
-~~~
+~~~php
 
-		$cond = [
-			'z.id' => [['>=',1],  ['<',400]],
-			'z.type' => 1
-		];
-        $criteria = new Criteria();
-        $criteria->cond( $cond ); 
-		
-	    $rows =  Yii::app()->db->createCommand()
-                  ->select('count(1) AS total,z.id')
-                  ->from( "ziku z" )
-                  ->leftJoin("zi_tag zt","z.id=zt.zi_id")
-                  ->where($criteria->condition, $criteria->params)
-				  ->group('z.id')
-				  ->offset(0)
-				  ->limit(10)
-				  ->queryAll();
+$cond = [
+	'z.id' => [['>=',1],  ['<',400]],
+	'z.type' => 1
+];
+$criteria = new Criteria();
+$criteria->cond( $cond ); 
+	
+$rows =  Yii::app()->db->createCommand()
+          ->select('count(1) AS total,z.id')
+          ->from( "ziku z" )
+          ->leftJoin("zi_tag zt","z.id=zt.zi_id")
+          ->where($criteria->condition, $criteria->params)
+	  ->group('z.id')
+	  ->offset(0)
+	  ->limit(10)
+	  ->queryAll();
 
 ~~~
 
