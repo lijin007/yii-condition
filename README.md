@@ -1,7 +1,7 @@
 # yii-condition
 将数组转换成yii数据库的查询条件
 
-DbCondition 改写自 Criteria, 将简化一些常用的查询. 将其放在protected/components/目录下
+改写自 CDbCriteria, 将简化一些常用的查询. 将其放在protected/components/目录下即可
 
 ####1 直接代替 CDbCriteria 使用
 
