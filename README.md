@@ -21,7 +21,7 @@
 		];
         $rows = $model->findAll($criteria);
 		//$data = $data -> getData();
-		print_test( getOrmData($rows) );
+		print_r( $rows );
 		
 	// 使用将简化
 	$cond = [
