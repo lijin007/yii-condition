@@ -1,4 +1,5 @@
 # yii-condition
+yii2.0已经支持数组查询了,这个适合于1.0.   注意跟2.0的不太一样啊
 将数组转换成yii数据库的查询条件
 
 改写自 CDbCriteria, 将简化一些常用的查询. 将其放在protected/components/目录下即可
